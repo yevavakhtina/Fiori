@@ -1,0 +1,54 @@
+specVersion: "3.1"
+metadata:
+  name: overviewtravelapp
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: false
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+        backend:
+          - scp: true
+            path: /sap
+            url: https://0e4e7bd0-339a-47c7-aae6-a8f0cb52cf77.abap.us10.hana.ondemand.com
+            destination: abap-cloud-default_abap-trial-75d8608ftrial-dev
+          - path: /sap/opu/odata4/sap/zui_fe_travel_001012_o4/srvd/sap/zui_fe_travel_001012_o4/0001/
+            url: https://0e4e7bd0-339a-47c7-aae6-a8f0cb52cf77.abap.us10.hana.ondemand.com
+            destination: abap-cloud-default_abap-trial-75d8608ftrial-dev
+            scp: true
+            authenticationType: OAuth2UserTokenExchange
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        component: overviewtravelapp
+        ui5Theme: sap_horizon
+    - name: sap-fe-mockserver
+      beforeMiddleware: csp
+      configuration:
+        mountPath: /
+        services:
+          - urlPath: /sap/opu/odata/sap/ZUI_FE_BOOKING_001012_O2
+            generateMockData: true
+            metadataXmlPath: ./webapp/localService/mainService/metadata.xml
+            mockdataRootPath: ./webapp/localService/data
+          - urlPath: /sap/opu/odata4/sap/zui_fe_travel_001012_o4/srvd/sap/zui_fe_travel_001012_o4/0001/
+            metadataPath: ./webapp/localService/zui_fe_travel_001012_o4/metadata.xml
+            mockdataPath: ./webapp/localService/zui_fe_travel_001012_o4/mockdata
+            generateMockData: true
+        annotations:
+          - localPath: ./webapp/localService/mainService/ZUI_FE_BOOKING_001012_O2_VAN.xml
+            urlPath: /sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZUI_FE_BOOKING_001012_O2_VAN',Version='0001')/$value/
+          - localPath: ./webapp/annotations/annotation.xml
+            urlPath: annotations/annotation.xml

@@ -1,27 +1,26 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Mon Dec 02 2024 14:43:03 GMT+0000 (Coordinated Universal Time)|
+|**Generation Date and Time**<br>Mon Dec 02 2024 15:43:01 GMT+0000 (Coordinated Universal Time)|
 |**App Generator**<br>@sap/generator-fiori-elements|
 |**App Generator Version**<br>1.15.6|
 |**Generation Platform**<br>SAP Business Application Studio|
-|**Template Used**<br>List Report Page V4|
+|**Template Used**<br>Overview Page V2|
 |**Service Type**<br>SAP System (ABAP Environment on SAP Business Technology Platform)|
-|**Service URL**<br>https://0e4e7bd0-339a-47c7-aae6-a8f0cb52cf77.abap.us10.hana.ondemand.com/sap/opu/odata4/sap/zui_fe_travel_001249_o4/srvd/sap/zui_fe_travel_001249_o4/0001/|
-|**Module Name**<br>travellistapp|
-|**Application Title**<br>Travel List|
+|**Service URL**<br>https://0e4e7bd0-339a-47c7-aae6-a8f0cb52cf77.abap.us10.hana.ondemand.com/sap/opu/odata/sap/ZUI_FE_BOOKING_001012_O2|
+|**Module Name**<br>overviewtravelapp|
+|**Application Title**<br>Travel Overview|
 |**Namespace**<br>|
 |**UI5 Theme**<br>sap_horizon|
 |**UI5 Version**<br>1.127.5|
 |**Enable Code Assist Libraries**<br>False|
 |**Enable TypeScript**<br>False|
 |**Add Eslint configuration**<br>False|
-|**Main Entity**<br>Travel|
-|**Navigation Entity**<br>_Booking|
+|**FilterEntity Type**<br>BookingType|
 
-## travellistapp
+## overviewtravelapp
 
-An SAP Fiori app for Travel List
+An SAP Fiori app for Travel Overview
 
 ### Starting the generated app
 
