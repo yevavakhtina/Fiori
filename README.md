@@ -32,11 +32,9 @@ course (https://developers.sap.com/group.fiori-tools-odata-v4-travel.html) <br /
 
 course (https://learning.sap.com/learning-journeys/getting-started-with-creating-an-sap-fiori-elements-app-based-on-an-odata-v4-rap-service)
      
-
+```abap
 @Search.searchable: true    
-
 @Metadata.layer: #CORE    
-
 @ObjectModel.semanticKey: [ 'TravelID' ] - hightlighted column     
     
 
@@ -57,6 +55,7 @@ course (https://learning.sap.com/learning-journeys/getting-started-with-creating
         }]
     }]
 }
+```
 
 ### List
 
@@ -897,7 +896,7 @@ in behaviour
 In webapp > ext > FragmentName.fragment.xml
 PageMap > ObjectPage > Add custom section
 
-´´´xml
+```xml
 
 <core:FragmentDefinition xmlns:core="sap.ui.core"
     xmlns="sap.m"
@@ -930,7 +929,7 @@ PageMap > ObjectPage > Add custom section
     </vbm:AnalyticMap>
     </VBox>
 </core:FragmentDefinition>
-´´´
+```
 
 ## Launchpad
 ## Navigation
