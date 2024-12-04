@@ -150,10 +150,11 @@ course (https://learning.sap.com/courses/developing-and-extending-sap-fiori-elem
 
 git (https://github.com/SAP-samples/fiori-elements-opensap/tree/main)
 
-### Charts
+## Charts
 
-Column Chart
+### Column Chart
 
+```xml
             <Annotations Target="cds_zfe_booking_analytics_001012.BookingType">
                 <Annotation Term="UI.Chart" Qualifier="ColumnChartFlightPriceByCarrier">
                     <Record Type="UI.ChartDefinitionType">
@@ -211,9 +212,11 @@ Column Chart
                     </Record>
                 </Annotation>
             </Annotations>
+```
 
+### Line Chart
 
-Line Chart
+```xml
 
                 <Annotation Term="UI.Chart" Qualifier="LineChart">
                     <Record Type="UI.ChartDefinitionType">
@@ -274,9 +277,11 @@ Line Chart
                     </Record>
                 </Annotation>
             </Annotations>
+```
 
-Bar Chart
+### Bar Chart
 
+```xml
                 <Annotation Term="UI.Chart" Qualifier="BarChartAgencyID">
                     <Record Type="UI.ChartDefinitionType">
                         <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Bar"/>
@@ -337,8 +342,11 @@ Bar Chart
                 </Annotation>
             </Annotations>
 
-Pie Chart
+```
 
+### Pie Chart
+
+```xml
                 <Annotation Term="UI.Chart" Qualifier="PieChart">
                     <Record Type="UI.ChartDefinitionType">
                         <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Donut"/>
@@ -398,15 +406,19 @@ Pie Chart
                     </Record>
                 </Annotation>
             </Annotations>
+```
 
-- Cards
+## Cards
 
+```json
         "globalFilterModel": "mainModel",
         "globalFilterEntityType": "BookingType",
         "containerLayout": "resizable",
         "enableLiveFilter": true,
         "considerAnalyticalParameters": false,
         "cards": {}
+```
+```xml
 
         <Annotation Term="UI.Identification" Qualifier="ToBookingAnalysis">
             <Collection>
@@ -416,10 +428,11 @@ Pie Chart
                 </Record>
             </Collection>
         </Annotation>
+```
 
 manifest.json + annotations
 
-       
+```json
             "CARD_000": {
               "template": "sap.ovp.cards.charts.analytical",
               "model": "mainModel",
@@ -432,7 +445,8 @@ manifest.json + annotations
                 "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#FlightPriceColumnDataPoint"
               }
             }
-
+```
+```xml
                         
                 <Annotation Term="UI.Chart" Qualifier="FlightPriceColumn">
                     <Record Type="UI.ChartDefinitionType">
@@ -473,7 +487,8 @@ manifest.json + annotations
                         <PropertyValue Property="Title" String="{@i18n>flightprice}"/>
                     </Record>
                 </Annotation>
-
+```
+```json
 
             "CARD_001": {
               "template": "sap.ovp.cards.v4.table",
@@ -505,7 +520,8 @@ manifest.json + annotations
                 "sortOrder": "ascending"
               }
             }
-
+```
+```xml
                         <Annotations Target="com.sap.gateway.srvd.zfe_travel_001012.v0001.TravelType">
                 <Annotation Term="UI.DataPoint" Qualifier="TravelBeginDateOpenInProgress">
                     <Record Type="UI.DataPointType">
@@ -655,7 +671,8 @@ manifest.json + annotations
                 </Annotation>
             </Annotations>
 
-
+```
+```json
 
             "CARD_002": {
               "model": "mainModel",
@@ -710,7 +727,9 @@ manifest.json + annotations
               }
             }
             json only
+```
 
+```json
 
             "CARD_003": {
               "model": "mainModel",
@@ -722,6 +741,9 @@ manifest.json + annotations
                 "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#FlightPriceByAirlineDonut"
               }
             }
+
+```
+```xml
 
                 <Annotation Term="UI.Chart" Qualifier="FlightPriceByAirlineDonut">
                     <Record Type="UI.ChartDefinitionType">
@@ -746,14 +768,15 @@ manifest.json + annotations
                     </Record>
                 </Annotation>
 
+```
 
-## Useful from PageMap
+### Useful from PageMap
 
-i18n
-Initial Load
-Column layout
+i18n <br/>
+Initial Load <br/>
+Column layout <br/>
 
-## Side effects (Validation + Determination)
+### Side effects (Validation + Determination)
 
 Method configuration on back end;
 
@@ -886,7 +909,7 @@ in behaviour
 
 ## Fragments
 
-In webapp > ext > FragmentName.fragment.xml
+In webapp > ext > FragmentName.fragment.xml   <br />
 PageMap > ObjectPage > Add custom section
 
 ```xml
