@@ -109,14 +109,14 @@ AgencyID;                                           " Display combination [ 'Age
 
 " Oject page section (collection)
     {
-        label: 'General Information',           - Section name
+        label: 'General Information',           " Section name
         type: #COLLECTION,
         id: 'GeneralInfo',
         position: 10
     },
     {
-        label: 'General',                       - Subsection name
-        type: #IDENTIFICATION_REFERENCE,        - type
+        label: 'General',                       " Subsection name
+        type: #IDENTIFICATION_REFERENCE,        " type
         parentId: 'GeneralInfo'
     }
     @UI.identification: [{ position: 10 }]
@@ -124,10 +124,10 @@ AgencyID;                                           " Display combination [ 'Age
 
 " Object page section > subsection
     {
-        label: 'Prices',                        - Subsection name
+        label: 'Prices',                        " Subsection name
         purpose: #STANDARD,
         position: 20,
-        type: #FIELDGROUP_REFERENCE,            - type
+        type: #FIELDGROUP_REFERENCE,            " type
         parentId: 'GeneralInfo',
         targetQualifier: 'PricesGroup'
     }
