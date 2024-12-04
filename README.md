@@ -59,19 +59,15 @@ course (https://learning.sap.com/learning-journeys/getting-started-with-creating
 
 ### List
 
-@EndUserText.label: 'Agency'
-> Heading of the column     
-
-@UI.textArrangement: #TEXT_ONLY
-> Display only text    
-
-@UI.lineItem: [{position: 20}] 
-> Add field to the column    
+```abap
+@EndUserText.label: 'Agency'                        " Heading of the column     
+@UI.textArrangement: #TEXT_ONLY                     " Display only text    
+@UI.lineItem: [{position: 20}]                      " Add field to the column    
 
 @UI.lineItem: [{position: 80, criticality: 'OverallStatusCriticality'}] 
-> Colored label (1/2/3)   
+                                                    " Colored label (1/2/3)   
 
-Definition:   
+"Definition:   
 
   case overall_status
     when 'O' then 2
@@ -81,30 +77,26 @@ Definition:
   end   as OverallStatusCriticality,
 
 
-  @ObjectModel.text.element: ['AgencyName'] 
-  AgencyID;
-  > Display combination [ 'AgencyName(AgencyID)' ]
+@ObjectModel.text.element: ['AgencyName'] 
+AgencyID;                                           " Display combination [ 'AgencyName(AgencyID)' ]
+```
 
+```abap
+@UI.selectionField: [{ position: 10 }]              " Search (selection) in header
 
-  @UI.selectionField: [{ position: 10 }] 
-  > Search (selection) in header
-  @Consumption.valueHelpDefinition: [{ entity: {name: '/DMO/I_Agency', element: 'AgencyID'} }] 
-  > Search help
-  @ObjectModel.resultSet.sizeCategory: #XS 
-  > Drop down menu for value help
+@Consumption.valueHelpDefinition: [{ entity: {name: '/DMO/I_Agency', element: 'AgencyID'} }] 
+                                                    " Search help
 
+@ObjectModel.resultSet.sizeCategory: #XS            " Drop down menu for value help
 
-  @Search.defaultSearchElement: true 
-  > defaul Search field
-  @Search.fuzzinessThreshold: 0.90 
-  > how precise search result set is
+@Search.defaultSearchElement: true                  " defaul Search field
+@Search.fuzzinessThreshold: 0.90                    " how precise search result set is
+```
 
+```abap
+@UI.facet: []                                       " object page sections
 
-  @UI.facet: [] 
-  > object page sections
-
-
-  > Object page header section
+" Object page header section
     {
         purpose: #HEADER,
         position: 10/20/30...
@@ -115,7 +107,7 @@ Definition:
     TotalPrice;
 
 
-  > Object page section (collection)
+" Oject page section (collection)
     {
         label: 'General Information',           - Section name
         type: #COLLECTION,
@@ -130,7 +122,7 @@ Definition:
     @UI.identification: [{ position: 10 }]
 
 
-  > Object page section > subsection
+" Object page section > subsection
     {
         label: 'Prices',                        - Subsection name
         purpose: #STANDARD,
@@ -141,7 +133,7 @@ Definition:
     }
     @UI.fieldGroup: [{ qualifier: 'PricesGroup', position: 20 }]
 
-  > Object page > table (list)
+" Object page > table (list)
     {
         id: 'Booking',
         purpose: #STANDARD,
@@ -150,6 +142,7 @@ Definition:
         position: 20,
         targetElement: '_Booking'
     }
+```
 
 # XML Annotations
 
