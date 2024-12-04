@@ -5,16 +5,16 @@ course (https://learning.sap.com/learning-journeys/acquire-core-abap-skills)
 ![alt text](image.png)
 
 - Dictionary - Datenbanktabellen 
-    DB tables
-    Open with > Data preview
+    - DB tables
+    - Open with > Data preview
 
 - Service Binding (Fiori preview)
 - Service Definition (exposed views)
 
-- CDS
-    Datendefinitionen - view definitions
-    R_D - select from DB table (everything only once)
-    C_D - projection on R_D (whatever you neeed for specific purposes, can be multiple)
+- CDS    
+    - Datendefinitionen - view definitions
+    - R_D - select from DB table (everything only once)
+    - C_D - projection on R_D (whatever you neeed for specific purposes, can be multiple)
 
     Metadaten Erweiterungen - views for annotations/Frontend
 
