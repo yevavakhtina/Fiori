@@ -1,6 +1,4 @@
-Important topics
-
-## ABAP Structure
+# ABAP Structure
 
 course (https://learning.sap.com/learning-journeys/acquire-core-abap-skills)
 
@@ -30,7 +28,7 @@ course (https://learning.sap.com/learning-journeys/acquire-core-abap-skills)
     Global class - local types
     Methods and their definitions
 
-## CDS Annotations
+# CDS Annotations
 
 course (https://developers.sap.com/group.fiori-tools-odata-v4-travel.html)
 course (https://learning.sap.com/learning-journeys/getting-started-with-creating-an-sap-fiori-elements-app-based-on-an-odata-v4-rap-service)
@@ -58,10 +56,14 @@ course (https://learning.sap.com/learning-journeys/getting-started-with-creating
 
 - List
 
-  @EndUserText.label: 'Agency' - Heading of the column
-  @UI.textArrangement: #TEXT_ONLY - Display only text
-  @UI.lineItem: [{position: 20}] - Add field to the column
-  @UI.lineItem: [{position: 80, criticality: 'OverallStatusCriticality'}] - Colored label (1/2/3)
+  @EndUserText.label: 'Agency'
+  > Heading of the column
+  @UI.textArrangement: #TEXT_ONLY
+  > Display only text
+  @UI.lineItem: [{position: 20}] 
+  > Add field to the column
+  @UI.lineItem: [{position: 80, criticality: 'OverallStatusCriticality'}] 
+  > Colored label (1/2/3)
   Definition:
   case overall_status
     when 'O' then 2
@@ -71,23 +73,30 @@ course (https://learning.sap.com/learning-journeys/getting-started-with-creating
   end   as OverallStatusCriticality,
 
 
-  @ObjectModel.text.element: ['AgencyName'] - Display combination [ 'AgencyName(AgencyID)' ]
+  @ObjectModel.text.element: ['AgencyName'] 
   AgencyID;
+  > Display combination [ 'AgencyName(AgencyID)' ]
 
 
-  @UI.selectionField: [{ position: 10 }] - Search (selection) in header
-  @Consumption.valueHelpDefinition: [{ entity: {name: '/DMO/I_Agency', element: 'AgencyID'} }] - Search help
-  @ObjectModel.resultSet.sizeCategory: #XS - Drop down menu for value help
+  @UI.selectionField: [{ position: 10 }] 
+  > Search (selection) in header
+  @Consumption.valueHelpDefinition: [{ entity: {name: '/DMO/I_Agency', element: 'AgencyID'} }] 
+  > Search help
+  @ObjectModel.resultSet.sizeCategory: #XS 
+  > Drop down menu for value help
 
 
-  @Search.defaultSearchElement: true - defaul Search field
-  @Search.fuzzinessThreshold: 0.90 - how precise search result set is
+  @Search.defaultSearchElement: true 
+  > defaul Search field
+  @Search.fuzzinessThreshold: 0.90 
+  > how precise search result set is
 
 
-  @UI.facet: [] - object page sections
+  @UI.facet: [] 
+  > object page sections
 
 
-    Object page header section
+  > Object page header section
     {
         purpose: #HEADER,
         position: 10/20/30...
@@ -98,7 +107,7 @@ course (https://learning.sap.com/learning-journeys/getting-started-with-creating
     TotalPrice;
 
 
-    Object page section (collection)
+  > Object page section (collection)
     {
         label: 'General Information',           - Section name
         type: #COLLECTION,
@@ -113,7 +122,7 @@ course (https://learning.sap.com/learning-journeys/getting-started-with-creating
     @UI.identification: [{ position: 10 }]
 
 
-    Object page section > subsection
+  > Object page section > subsection
     {
         label: 'Prices',                        - Subsection name
         purpose: #STANDARD,
@@ -124,7 +133,7 @@ course (https://learning.sap.com/learning-journeys/getting-started-with-creating
     }
     @UI.fieldGroup: [{ qualifier: 'PricesGroup', position: 20 }]
 
-    Object page > table (list)
+  > Object page > table (list)
     {
         id: 'Booking',
         purpose: #STANDARD,
@@ -134,12 +143,13 @@ course (https://learning.sap.com/learning-journeys/getting-started-with-creating
         targetElement: '_Booking'
     }
 
-## XML Annotations
+# XML Annotations
 
-course (https://learning.sap.com/courses/developing-and-extending-sap-fiori-elements-apps?url_id=text-former-openSAP-course)
+course (https://learning.sap.com/courses/developing-and-extending-sap-fiori-elements-apps?url_id=text-former-openSAP-course)  
+
 git (https://github.com/SAP-samples/fiori-elements-opensap/tree/main)
 
-- Charts
+### Charts
 
 Column Chart
 
