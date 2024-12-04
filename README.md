@@ -16,17 +16,15 @@ course (https://learning.sap.com/learning-journeys/acquire-core-abap-skills)
     - R_D - select from DB table (everything only once)
     - C_D - projection on R_D (whatever you neeed for specific purposes, can be multiple)
 
-    Metadaten Erweiterungen - views for annotations/Frontend
-
-    Verhaltensdefinitionen - behaviours
-    CRUDs
-    Validation & Determination
-    Actions
+- Metadaten Erweiterungen - views for annotations/Frontend
+- Verhaltensdefinitionen - behaviours
+    - CRUDs
+    - Validation & Determination
+    - Actions
 
 - Quellcodebibliothek
-    Classes
-    Global class - local types
-    Methods and their definitions
+    - Classes
+    - Global class > local types - Methods and their definitions
 
 # CDS Annotations
 
