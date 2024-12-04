@@ -1,6 +1,6 @@
 # ABAP Structure
 
-course (https://learning.sap.com/learning-journeys/acquire-core-abap-skills)
+course (https://learning.sap.com/learning-journeys/acquire-core-abap-skills)     
 
 ![alt text](image.png)
 
@@ -28,12 +28,18 @@ course (https://learning.sap.com/learning-journeys/acquire-core-abap-skills)
 
 # CDS Annotations
 
-course (https://developers.sap.com/group.fiori-tools-odata-v4-travel.html)
-course (https://learning.sap.com/learning-journeys/getting-started-with-creating-an-sap-fiori-elements-app-based-on-an-odata-v4-rap-service)
+course (https://developers.sap.com/group.fiori-tools-odata-v4-travel.html) <br />     
 
-@Search.searchable: true
-@Metadata.layer: #CORE
-@ObjectModel.semanticKey: [ 'TravelID' ] - hightlighted column
+course (https://learning.sap.com/learning-journeys/getting-started-with-creating-an-sap-fiori-elements-app-based-on-an-odata-v4-rap-service)
+     
+
+@Search.searchable: true    
+
+@Metadata.layer: #CORE    
+
+@ObjectModel.semanticKey: [ 'TravelID' ] - hightlighted column     
+    
+
 @UI: {
     headerInfo: {
         typeNamePlural: 'Travels',                              - list
