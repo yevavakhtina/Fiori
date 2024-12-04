@@ -54,17 +54,22 @@ course (https://learning.sap.com/learning-journeys/getting-started-with-creating
     }]
 }
 
-- List
+### List
 
-  @EndUserText.label: 'Agency'
-  > Heading of the column
-  @UI.textArrangement: #TEXT_ONLY
-  > Display only text
-  @UI.lineItem: [{position: 20}] 
-  > Add field to the column
-  @UI.lineItem: [{position: 80, criticality: 'OverallStatusCriticality'}] 
-  > Colored label (1/2/3)
-  Definition:
+@EndUserText.label: 'Agency'
+> Heading of the column     
+
+@UI.textArrangement: #TEXT_ONLY
+> Display only text    
+
+@UI.lineItem: [{position: 20}] 
+> Add field to the column    
+
+@UI.lineItem: [{position: 80, criticality: 'OverallStatusCriticality'}] 
+> Colored label (1/2/3)   
+
+Definition:   
+
   case overall_status
     when 'O' then 2
     when 'A' then 3
