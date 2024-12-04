@@ -778,9 +778,10 @@ Column layout <br/>
 
 ### Side effects (Validation + Determination)
 
-Method configuration on back end;
+- Method configuration on back end;
 
-in behaviour
+```abap
+" in behaviour
 {
     internal action reCalcTotalPrice;
 
@@ -788,7 +789,7 @@ in behaviour
     determination calculateTotalPrice on modify { create; field BookingFee, CurrencyCode; }
 }
 
-
+"in class
   METHOD reCalcTotalPrice.
 
     TYPES: BEGIN OF ty_amount_per_currencycode,
@@ -860,10 +861,12 @@ in behaviour
   ENDMETHOD.
 
 
+" in behaviour
   {
     determination calculateTotalPrice on modify { create; field FlightPrice, CurrencyCode; }
   }
 
+" in class
   METHOD calculateTotalPrice.
     " Read all parent UUIDs
     READ ENTITIES OF ZI_FE_Travel_001249 IN LOCAL MODE
@@ -878,8 +881,8 @@ in behaviour
         EXECUTE reCalcTotalPrice
         FROM CORRESPONDING  #( travels ).
   ENDMETHOD.
-
-
+```
+```xml
             <Annotations Target="SAP__self.TravelType">
                 <Annotation Term="Common.SideEffects" Qualifier="mySideEffect1">
                     <Record Type="Common.SideEffectsType">
@@ -905,9 +908,9 @@ in behaviour
                     </Record>
                 </Annotation>
             </Annotations>
+```
 
-
-## Fragments
+### Fragments
 
 In webapp > ext > FragmentName.fragment.xml   <br />
 PageMap > ObjectPage > Add custom section
@@ -947,6 +950,6 @@ PageMap > ObjectPage > Add custom section
 </core:FragmentDefinition>
 ```
 
-## Launchpad
-## Navigation
-## Buttons + Action buttons
+### Launchpad
+### Navigation
+### Buttons + Action buttons
