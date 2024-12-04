@@ -35,23 +35,23 @@ course (https://learning.sap.com/learning-journeys/getting-started-with-creating
 ```abap
 @Search.searchable: true    
 @Metadata.layer: #CORE    
-@ObjectModel.semanticKey: [ 'TravelID' ] - hightlighted column     
+@ObjectModel.semanticKey: [ 'TravelID' ]                        " hightlighted column     
     
 
 @UI: {
     headerInfo: {
-        typeNamePlural: 'Travels',                              - list
-        typeName: 'Travel',                                     - object page
-        title: { type: #STANDARD, value: 'Description'},        - object page Title
-        description: { type: #STANDARD, value: 'TravelID'}      - object page Description
+        typeNamePlural: 'Travels',                              " list
+        typeName: 'Travel',                                     " object page
+        title: { type: #STANDARD, value: 'Description'},        " object page Title
+        description: { type: #STANDARD, value: 'TravelID'}      " object page Description
     },
     presentationVariant: [{
         sortOrder: [{
-            by: 'LocalLastChangedAt',                           - sort table by
+            by: 'LocalLastChangedAt',                           " sort table by
             direction: #DESC
         }],
         visualizations: [{
-            type: #AS_LINEITEM                                  - ?
+            type: #AS_LINEITEM                                  " ?
         }]
     }]
 }
