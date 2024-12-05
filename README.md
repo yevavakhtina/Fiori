@@ -950,6 +950,14 @@ PageMap > ObjectPage > Add custom section
 </core:FragmentDefinition>
 ```
 
-### Launchpad
+### Launchpad + Roles
+
+Basics course (https://learning.sap.com/learning-journeys/learn-the-basics-of-sap-fiori)
+
 ### Navigation
+
+https://learning.sap.com/learning-journeys/develop-sapui5-applications?url_id=text-gl-hp
+
 ### Buttons + Action buttons
+
+
