@@ -26,6 +26,136 @@ course (https://learning.sap.com/learning-journeys/acquire-core-abap-skills)
     - Classes
     - Global class > local types - Methods and their definitions
 
+### Details
+
+### Database examples
+
+```abap
+@EndUserText.label : 'Student details'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table zcim_rap_1303 {
+  key client         : mandt not null;
+  key id             : sysuuid_x16 not null;
+  firstname          : abap.char(100);
+  lastname           : abap.char(100);
+  age                : abap.numc(4);
+  course             : abap.char(50);
+  courseduration     : abap.numc(4);
+  status             : abap_boolean;
+  gender             : abap.char(1);
+  dob                : abap.dats;
+  createdby          : syuname;
+  createdat          : timestampl;
+  lastchangedby      : syuname;
+  lastchangedat      : abp_lastchange_tstmpl;
+  locallastchangedat : abp_locinst_lastchange_tstmpl;
+}
+
+@EndUserText.label : 'Academic result table'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table zcim_rap_ar_1303 {
+  key client         : abap.clnt not null;
+  @AbapCatalog.foreignKey.screenCheck : false
+  key id             : sysuuid_x16 not null
+    with foreign key zcim_rap_1303
+      where client = zcim_rap_ar_1303.client
+        and id = zcim_rap_ar_1303.id;
+  key course         : zcim_rap_course_de_1303 not null;
+  key semester       : zcim_rap_sem_de_1303 not null;
+  semresult          : zcim_rap_semres_de_1303;
+  createdby          : syuname;
+  createdat          : timestampl;
+  lastchangedby      : syuname;
+  lastchangedat      : abp_lastchange_tstmpl;
+  locallastchangedat : abp_locinst_lastchange_tstmpl;
+}
+```
+
+### Data definitions
+
+Root view (parent)
+```abap
+define root view entity ZR_CIM_RAP_1303
+ as select from zcim_rap_1303 (db table name or alias)
+ composition[0..*] of ZR_CIM_RAP_AR_1303 as _academicres
+{
+ key id                  as Id,
+     firstname           as Firstname,
+     _academicres
+}
+```
+
+Consumption view (parent)
+```abap
+define root view entity ZC_CIM_RAP_1303
+ provider contract transactional_query
+ as projection on ZR_CIM_RAP_1303 (root view name)
+{
+ key Id,
+ Firstname,
+ _academicres : redirected to composition child ZC_CIM_RAP_AR_1303
+}
+```
+
+Root view child
+```abap
+define view entity ZR_CIM_RAP_AR_1303
+ as select from zcim_rap_ar_1303
+association to parent ZR_CIM_RAP_1303 as _student on $projection.Id = _student.Id
+{
+   key id as Id,
+    _student
+}
+```
+
+Consumption view child
+```abap
+define view entity ZC_CIM_RAP_AR_1303
+ as projection on ZR_CIM_RAP_AR_1303
+{
+ key Id,
+ _student : redirected to parent ZC_CIM_RAP_1303 
+}
+```
+
+Neutral entity just root
+```abap
+define view entity ZR_COURSE_1303 as select from DDCDS_CUSTOMER_DOMAIN_VALUE_T( p_domain_name: 'ZCIM_RAP_COURSE_1303' )
+{
+   key domain_name,
+   key value_position,
+   value_low as Value,
+}
+```
+
+Used inside root view
+```abap
+association to ZR_COURSE_1303 as _course on $projection.Course = _course.Value
+association to ZR_SEM_RAP_1303 as _semester on $projection.Semester = _semester.Value
+association to ZR_SEMRES_1303 as _semres on $projection.Semresult = _semres.Value
+{
+   _course,
+   _semester,
+   _semres
+}
+```
+ 
+Used inside consumption view
+```abap
+{
+ _course,
+ _semester,
+ _semres,
+}
+```
+
+
 # CDS Annotations
 
 course (https://developers.sap.com/group.fiori-tools-odata-v4-travel.html) <br />     
@@ -85,6 +215,14 @@ AgencyID;                                           " Display combination [ 'Age
 @UI.selectionField: [{ position: 10 }]              " Search (selection) in header
 
 @Consumption.valueHelpDefinition: [{ entity: {name: '/DMO/I_Agency', element: 'AgencyID'} }] 
+or
+@Consumption.valueHelpDefinition: [{ 
+      entity: { name: 'ZR_GENDER_1303', element: 'Value' },
+      distinctValues :true,                         " only unique values
+      additionalBinding: [{ localElement: 'Genderdesc', element: 'Description', usage: #FILTER }]  
+}]
+@UI.identification: [{ position: 85, label: '' }]
+Genderdesc;
                                                     " Search help
 
 @ObjectModel.resultSet.sizeCategory: #XS            " Drop down menu for value help
@@ -92,6 +230,15 @@ AgencyID;                                           " Display combination [ 'Age
 @Search.defaultSearchElement: true                  " defaul Search field
 @Search.fuzzinessThreshold: 0.90                    " how precise search result set is
 ```
+
+```abap
+  @EndUserText.label: 'Status'
+  @UI: { lineItem: [{position: 70 }, { type: #FOR_ACTION, dataAction: 'setAdmitted', label: 'Set Admitted' }],
+         identification: [{ position: 70}, { type: #FOR_ACTION, dataAction: 'setAdmitted', label: 'Set Admitted' }] 
+  }
+  Status;
+```
+
 
 ```abap
 @UI.facet: []                                       " object page sections
