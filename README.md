@@ -155,6 +155,124 @@ Used inside consumption view
 }
 ```
 
+### Behaviour definitions
+
+ROOT
+```abap
+" managed = CRUD provided
+managed implementation in class ZBP_R_CIM_RAP_1303 unique;
+" enforces the highest level of checks and restrictions
+strict ( 2 );
+" draft functionality
+with draft;
+
+define behavior for ZR_CIM_RAP_1303 alias ZrCimRap1303
+persistent table ZCIM_RAP_1303
+draft table ZCIM_RAP_1303_D
+
+" entity tag = etag, used to detect changes
+" master means main/root
+etag master Locallastchangedat
+
+" ensures that only 1 user at a time can make changes
+" total means entire entity after CRUD
+lock master total etag Lastchangedat
+
+" ???
+authorization master( global )
+```
+
+CHILD same file
+```abap
+define behavior for ZR_CIM_RAP_AR_1303 alias ZrCimRapAr1303
+persistent table ZCIM_RAP_AR_1303
+draft table ZCM_RP_AR_1303_D
+etag master LocalLastChangedAt
+lock dependent by _student
+authorization dependent by _student
+```
+
+```abap
+field ( readonly ) " readonly
+   Id,
+   Lastchangedat,
+   Locallastchangedat,
+   Genderdesc,
+   Courseduration;
+
+field ( numbering : managed ) " autogeneration
+   Id;
+```
+
+CRUD, precheck, (draft) action, validation, determination
+```abap
+  create;
+  update ( precheck );
+  delete;
+  action ( features : instance ) setAdmitted result [1] $self;
+  validation validateAge on save { field Age; create; }
+  determination updateCourseDuration on modify { field Course; }
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+```
+
+Data exposure
+```abap
+ association _academicres {create; with draft;} " inside parent
+ association _student { with draft; } " inside child
+
+ mapping for ZCIM_RAP_1303
+  {
+    Id = id;
+    Firstname = firstname;
+    Lastname = lastname;
+    Age = age;
+    Course = course;
+  }
+
+```
+
+CONSUMPTION
+
+```abap
+projection implementation in class ZBP_C_CIM_RAP_1303 unique;
+strict ( 2 );
+use draft;
+define behavior for ZC_CIM_RAP_1303 alias ZcCimRap1303
+use etag
+
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+
+  use action setAdmitted;
+  use association _academicres { create; with draft; }
+}
+
+
+
+define behavior for ZC_CIM_RAP_AR_1303 alias ZcCimRapAr1303
+use etag
+
+{
+  use update;
+  use delete;
+
+  use association _student { with draft; }
+}
+```
+
 
 # CDS Annotations
 
@@ -230,7 +348,7 @@ Genderdesc;
 @Search.defaultSearchElement: true                  " defaul Search field
 @Search.fuzzinessThreshold: 0.90                    " how precise search result set is
 ```
-
+### Actions
 ```abap
   @EndUserText.label: 'Status'
   @UI: { lineItem: [{position: 70 }, { type: #FOR_ACTION, dataAction: 'setAdmitted', label: 'Set Admitted' }],
@@ -239,7 +357,7 @@ Genderdesc;
   Status;
 ```
 
-
+### Facets
 ```abap
 @UI.facet: []                                       " object page sections
 
